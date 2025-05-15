@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Inicio del Proyecto</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 2rem;
+      font-family: sans-serif;
+      background: #111;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      margin-bottom: 2rem;
+    }
+
+    button {
+      padding: 1rem 2rem;
+      margin: 0.5rem;
+      font-size: 1.2rem;
+      background: #e20074;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #c00064;
+    }
+  </style>
+</head>
+<body>
+  <h1>Proyecto Editor + Vista Previa</h1>
+  <button onclick="window.open('editor.html', '_blank')">Abrir Editor</button>
+  <button onclick="window.open('preview.html', '_blank')">Abrir Vista Previa</button>
+</body>
+</html>

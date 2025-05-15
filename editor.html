@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Editor</title>
+  <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.34.1/min/vs/loader.js"></script>
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+    }
+    #editor-container {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="editor-container"></div>
+  <script>
+    require.config({ paths: { vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.34.1/min/vs' } });
+
+    require(['vs/editor/editor.main'], function () {
+      const channel = new BroadcastChannel('html_editor_channel');
+
+      const editor = monaco.editor.create(document.getElementById('editor-container'), {
+        value: '',
+        language: 'html',
+        theme: 'vs-dark',
+        automaticLayout: true
+      });
+
+      editor.onDidChangeModelContent(() => {
+        const html = editor.getValue();
+        channel.postMessage(html);
+      });
+
+      // Enviar contenido inicial al abrir
+      channel.postMessage(editor.getValue());
+    });
+  </script>
+</body>
+</html>
